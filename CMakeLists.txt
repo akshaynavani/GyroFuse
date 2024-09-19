@@ -15,6 +15,7 @@ endif()
 add_library(gyrofuse
   src/csv_io.cpp
   src/tilt.cpp
+  src/complementary_filter.cpp
 )
 target_include_directories(gyrofuse PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
