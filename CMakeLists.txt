@@ -20,6 +20,7 @@ add_library(gyrofuse
   src/kalman_filter.cpp
   src/calibration.cpp
   src/csv_source.cpp
+  src/iio_source.cpp
 )
 target_include_directories(gyrofuse PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
