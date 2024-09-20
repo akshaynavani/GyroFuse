@@ -29,3 +29,17 @@ target_include_directories(gyrofuse PUBLIC
 target_compile_options(gyrofuse PRIVATE
   $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall -Wextra -Wpedantic>
 )
+
+if(GYROFUSE_BUILD_CLI)
+  add_executable(gyrofuse_cli apps/gyrofuse_cli.cpp)
+  set_target_properties(gyrofuse_cli PROPERTIES OUTPUT_NAME gyrofuse)
+  target_link_libraries(gyrofuse_cli PRIVATE gyrofuse)
+endif()
+
+# std::filesystem needs an extra library on older GCC.
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9.1)
+  target_link_libraries(gyrofuse PUBLIC stdc++fs)
+endif()
+
+find_package(Threads REQUIRED)
+target_link_libraries(gyrofuse PUBLIC Threads::Threads)
