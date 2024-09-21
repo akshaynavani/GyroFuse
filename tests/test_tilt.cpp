@@ -36,7 +36,7 @@ TEST(euler_rates_identity_when_level) {
 }
 
 TEST(euler_rates_rolled_90_maps_q_to_yaw) {
-    // Rolled 90 deg: body y axis points along world -z... so body q drives yaw.
+    // Rolled 90 deg: body y axis points along world z, so body q drives yaw.
     const Vec3 rates = eulerRates(Attitude{kPi / 2, 0, 0}, {0, 1.0, 0});
     CHECK_NEAR(rates.y, 0.0, 1e-9);
     CHECK_NEAR(rates.z, 1.0, 1e-9);
