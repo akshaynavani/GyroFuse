@@ -43,3 +43,17 @@ endif()
 
 find_package(Threads REQUIRED)
 target_link_libraries(gyrofuse PUBLIC Threads::Threads)
+
+if(GYROFUSE_BUILD_TESTS)
+  enable_testing()
+  add_executable(gyrofuse_tests
+    tests/test_main.cpp
+    tests/test_matrix.cpp
+    tests/test_tilt.cpp
+    tests/test_complementary.cpp
+    tests/test_kalman.cpp
+    tests/test_csv.cpp
+  )
+  target_link_libraries(gyrofuse_tests PRIVATE gyrofuse)
+  add_test(NAME gyrofuse_tests COMMAND gyrofuse_tests)
+endif()
