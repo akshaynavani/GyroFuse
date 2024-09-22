@@ -74,7 +74,7 @@ TEST(calibration_estimates_static_bias) {
         s.gyro = {0.01 + ((i % 2) ? 1e-3 : -1e-3), -0.02, 0.005};
         data.push_back(s);
     }
-    const auto cal = calibrateGyro(data, 1.0);
+    const auto cal = calibrateGyro(data, 0.9975);
     CHECK(cal.samples == 200);
     CHECK(cal.stationary);
     CHECK_NEAR(cal.bias.x, 0.01, 1e-9);
@@ -82,5 +82,5 @@ TEST(calibration_estimates_static_bias) {
     CHECK_NEAR(cal.stddev.x, 1e-3, 1e-6);
 
     data[10].gyro.x = 2.0;  // motion during the window
-    CHECK(!calibrateGyro(data, 1.0).stationary);
+    CHECK(!calibrateGyro(data, 0.9975).stationary);
 }
