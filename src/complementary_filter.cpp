@@ -28,6 +28,7 @@ AttitudeEstimate ComplementaryFilter::update(const ImuSample& s) {
 
     const double dt = safeDt(est_.t, s.t);
     est_.t = s.t;
+    est_.gyroBias = gyroOffset_;
     if (dt == 0.0) return est_;
 
     const Vec3 rates = eulerRates(est_.attitude, s.gyro - gyroOffset_);
