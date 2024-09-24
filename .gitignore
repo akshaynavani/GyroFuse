@@ -1,0 +1,29 @@
+# CMake / C++ build output
+build/
+build-*/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json
+*.o
+*.a
+*.so
+*.dylib
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Generated data and results
+data/
+out/
+*.png
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+.env
